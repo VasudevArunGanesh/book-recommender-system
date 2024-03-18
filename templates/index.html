@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Books Reccommender</title>
+    <style>
+      body {
+        background-color: rgb(33, 132, 0);
+      }
+      p,
+      h1 {
+        color: white;
+        text-align: center;
+      }
+      form {
+        margin: 50px auto;
+        display: flex;
+        justify-content: center;
+        height: 40px;
+      }
+      select {
+        display: inline-block;
+        width: 400px;
+        height: 30px;
+        border-radius: 3px;
+        margin: 5px;
+      }
+      input[type="submit"] {
+        height: 30px;
+        margin: 5px;
+        border-radius: 3px;
+        background-color: transparent;
+        color: white;
+        border: 1px dashed white;
+      }
+      .books-card {
+        margin: 60px;
+        max-width: 1500px;
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        flex-wrap: wrap;
+      }
+      .books-image {
+        width: 200px;
+        text-align: center;
+      }
+      .books-image img {
+        width: 100%;
+        height: 300px;
+        display: block;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      .books-title {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="" method="POST">
+      <select name="book" id="book1" aria-placeholder="select book name">
+        <option value="">Select book name</option>
+        {% for book in books %}
+        <option value="{{book}}">{{book}}</option>
+        {% endfor %}
+      </select>
+      <input type="submit" value="recommend" />
+    </form>
+    {% if recommended_books|length != 0 %}
+    <h1>Books you might like:</h1>
+    <div class="books-card">
+      {% for x in range(0,recommended_books|length) %}
+
+      <div class="books-image">
+        <img src="{{posters[x]}}" alt="no image available" />
+        <p>{{recommended_books[x]}}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </body>
+</html>
